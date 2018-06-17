@@ -4,13 +4,13 @@ from bs4 import BeautifulSoup
 import re
 
 ab_kodu = input("Abonent kodunuz: ")
-api_url = "http://data.e-gov.az/api/v1/IEGOVService.svc/GetDebtByAbonentCode/{}".format(ab_kodu)
+api_url = "https://opendata.e-gov.az/api/v1/json/azersu/DebtInfo/{}".format(ab_kodu)
 
 with urllib.request.urlopen(api_url) as url:
     output = url.read().decode('utf-8')
     data = json.loads(output)
 
-html = data['response']['htmlField']
+html = data['Response']['HtmlField']
 soup = BeautifulSoup(html, "html.parser")
 l = []
 
